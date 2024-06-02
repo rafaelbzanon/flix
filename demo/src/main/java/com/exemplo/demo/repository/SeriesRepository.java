@@ -1,4 +1,7 @@
 package com.exemplo.demo.repository;
 
-public interface SeriesRepository {
+import com.exemplo.demo.models.Series;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface SeriesRepository extends JpaRepository<Series, Integer> {
 }
