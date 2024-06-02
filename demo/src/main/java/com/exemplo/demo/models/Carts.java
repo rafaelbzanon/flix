@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class Carts {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)

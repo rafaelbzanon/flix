@@ -11,6 +11,6 @@ import lombok.Data;
 public class CastingRoles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String role;
 }

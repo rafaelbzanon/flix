@@ -11,7 +11,7 @@ import lombok.Data;
 public class Transactions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private float amount;
 
 
