@@ -8,7 +8,7 @@ import lombok.Data;
 public class CartItems {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "movies_id", nullable = true)

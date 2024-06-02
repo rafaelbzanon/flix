@@ -8,7 +8,7 @@ import lombok.Data;
 public class Casting {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private int id;
+    private Integer id;
     private String name;
     @ManyToOne
     @JoinColumn(name = "castingRoles_id", nullable = false)
