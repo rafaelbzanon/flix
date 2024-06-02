@@ -11,6 +11,6 @@ import lombok.Data;
 public class ContentRating {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private long id;
+    private int id;
     private String rating;
 }

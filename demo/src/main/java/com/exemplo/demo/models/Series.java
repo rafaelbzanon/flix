@@ -8,7 +8,7 @@ import lombok.Data;
 public class Series {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private long id;
+    private int id;
 
     private String title;
 

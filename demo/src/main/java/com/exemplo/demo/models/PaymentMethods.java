@@ -8,9 +8,9 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Years {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PaymentMethods {
     @Id
-    private int id;
-    private String year;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
 }

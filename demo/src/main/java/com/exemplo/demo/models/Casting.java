@@ -1,9 +1,6 @@
 package com.exemplo.demo.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -11,6 +8,9 @@ import lombok.Data;
 public class Casting {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private long id;
+    private int id;
     private String name;
+    @ManyToOne
+    @JoinColumn(name = "castingRoles_id", nullable = false)
+    private CastingRoles castingRoles;
 }
