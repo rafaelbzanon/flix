@@ -8,9 +8,9 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Years {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CastingRoles {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String year;
+    private String role;
 }
