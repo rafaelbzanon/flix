@@ -2,10 +2,12 @@ package com.exemplo.demo.controllers;
 
 import com.exemplo.demo.models.Years;
 import com.exemplo.demo.repository.YearsRepository;
+import com.exemplo.demo.services.YearsServ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.Path;
 import java.util.List;
 
 @RestController
@@ -14,28 +16,34 @@ import java.util.List;
 public class YearsController {
 
     @Autowired
-    private YearsRepository yearsRepository;
+    private YearsServ yearsService;
 
     @GetMapping
-    public ResponseEntity<List<Years>> findAll() {
-        return ResponseEntity.ok(yearsRepository.findAll());
+    public ResponseEntity<?> getAllYears() {
+        return yearsService.getAllYears();
     }
 
     @PostMapping
-    public ResponseEntity<Years> save(@RequestBody Years years) {
-        return ResponseEntity.ok(yearsRepository.save(years));
+    public ResponseEntity<?> createYears(@RequestBody Years years) {
+        yearsService.createYear(years);
+        return ResponseEntity.ok().body("Year registered with success.");
     }
 
-    @DeleteMapping
-    public ResponseEntity<Years> delete(@RequestBody Years years) {
-        yearsRepository.delete(years);
-        return ResponseEntity.ok(years);
+    @DeleteMapping("{YearsId}")
+    public ResponseEntity<?> deleteYearsById(@PathVariable Integer YearsId) {
+        yearsService.deleteYearsById(YearsId);
+        return ResponseEntity.ok().body("Deleted.");
     }
 
-    @PutMapping
-    public ResponseEntity<Years> update(@RequestBody Years years) {
-        yearsRepository.save(years);
-        return ResponseEntity.ok(years);
+    @PutMapping("{YearsId}")
+    public ResponseEntity<?> updateYears(@PathVariable Integer YearsId, @RequestBody Years years) {
+        years.setId(YearsId);
+        yearsService.updateYears(YearsId, years);
+        return ResponseEntity.ok().body("Year updated with success.");
     }
 
+    @GetMapping("{YearsId}")
+    public ResponseEntity<?> getYearsById(@PathVariable Integer YearsId){
+        return yearsService.getAllYearsById(YearsId);
+    }
 }
