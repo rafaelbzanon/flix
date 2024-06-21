@@ -36,17 +36,26 @@ public class MediaService {
         );
     }
 
+    /**
+     * Salva ou atualiza uma mídia.
+     * @param mediaDTO Payload.
+     * @return Mídia atualizada.
+     */
     public ResponseEntity<MediaDTO> createOrSaveMedia(MediaDTO mediaDTO) {
         log.info("createMedia() - request: {}", mediaDTO);
 
+        // Erro 400 caso o título esteja vazio.
         if (mediaDTO.getTitle() == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O campo 'title' precisa ser informado.");
         }
 
+        // Busca media pelo título no repository
         Optional<Media> optional = mediaRepository.findByTitle(mediaDTO.getTitle());
 
+        // Usa o objeto Media, caso não existir cria um novo objeto.
         Media media = optional.orElseGet(Media::new);
 
+        // Atualiza as informações da mídia.
         media.setTitle(mediaDTO.getTitle());
         media.setDescription(mediaDTO.getDescription());
         media.setRating(mediaDTO.getRating());
@@ -56,14 +65,17 @@ public class MediaService {
         media.setTrailerUrl(mediaDTO.getTrailerUrl());
         media.setEpisodes(mediaDTO.getEpisodes());
         media.setMediaType(mediaDTO.getMediaType());
+
+        // Relacionamentos
         media.setGenre(genreService.createOrSave(mediaDTO.getGenre()));
         // TODO: casting
 
+        // Salva no banco de dados.
         mediaRepository.save(media);
         MediaDTO mediaResponse = MediaDTO.fromEntity(media);
 
         log.info("createMedia() - success");
-        return ResponseEntity.ok(mediaResponse);
+        return ResponseEntity.ok(mediaResponse); // Caso atualizar com sucesso, retorna 200.
     }
 
 }
