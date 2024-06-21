@@ -62,6 +62,7 @@ public class MediaService {
         media.setPrice(mediaDTO.getPrice());
         media.setYear(mediaDTO.getYear());
         media.setContentRating(mediaDTO.getContentRating());
+        media.setThumbUrl(mediaDTO.getThumbUrl());
         media.setTrailerUrl(mediaDTO.getTrailerUrl());
         media.setEpisodes(mediaDTO.getEpisodes());
         media.setMediaType(mediaDTO.getMediaType());

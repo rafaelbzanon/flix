@@ -17,6 +17,7 @@ public class MediaDTO {
     private int year;
     private String contentRating;
     private String trailerUrl;
+    private String thumbUrl;
     private Integer episodes;
     private MediaType mediaType;
     private GenreDTO genre;
@@ -31,6 +32,7 @@ public class MediaDTO {
         dto.setPrice(media.getPrice());
         dto.setYear(media.getYear());
         dto.setContentRating(media.getContentRating());
+        dto.setThumbUrl(media.getThumbUrl());
         dto.setTrailerUrl(media.getTrailerUrl());
         dto.setEpisodes(media.getEpisodes());
         dto.setMediaType(media.getMediaType());

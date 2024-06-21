@@ -24,6 +24,8 @@ public class Media {
 
     private String contentRating;
 
+    private String thumbUrl;
+
     private String trailerUrl;
 
     // Campo específico para séries. Pode ser nulo para filmes
