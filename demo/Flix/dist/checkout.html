@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+    </style>
+    <link href="./output.css" rel="stylesheet">
+</head>
+<body class="bg-violet-950">
+    <div class="container mx-auto p-8">
+        <!-- Checkout Form -->
+        <div class="bg-white p-8 rounded-lg shadow-md flex justify-between">
+            <!-- Personal Information -->
+            <div class="w-1/2 pr-8">
+                <button class="w-1/4 bg-purple-600 text-white py-3 rounded-lg mt-6"><a href="index.html">Voltar</a></a></button>
+                <h2 class="text-3xl font-bold text-purple-900 mb-6">Checkout</h2>
+                <div class="mb-6">
+                    <a href="#" class="text-purple-500">Log in</a> or 
+                    <a href="#" class="text-purple-500">Sign up.</a>
+                </div>
+                <form>
+                    <div class="mb-4">
+                        <label for="firstName" class="block text-gray-700">First Name</label>
+                        <input type="text" id="firstName" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                    <div class="mb-4">
+                        <label for="lastName" class="block text-gray-700">Last Name</label>
+                        <input type="text" id="lastName" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700">Email</label>
+                        <input type="email" id="email" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                    <div class="mb-4">
+                        <label for="phoneNumber" class="block text-gray-700">Phone Number</label>
+                        <input type="tel" id="phoneNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                    <h3 class="text-xl font-bold text-purple-900 mb-4">Select a Shipping Method</h3>
+                    <div class="mb-4">
+                        <input type="radio" id="storePickup" name="shippingMethod" class="mr-2">
+                        <label for="storePickup" class="text-gray-700">Store pickup</label>
+                    </div>
+                    <div class="mb-4">
+                        <input type="radio" id="courierDelivery" name="shippingMethod" class="mr-2">
+                        <label for="courierDelivery" class="text-gray-700">Courier delivery</label>
+                    </div>
+                    <div class="mb-4">
+                        <label for="countryRegion" class="block text-gray-700">Country/Region</label>
+                        <input type="text" id="countryRegion" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                    <div class="mb-4">
+                        <label for="city" class="block text-gray-700">City</label>
+                        <input type="text" id="city" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                    <div class="mb-4">
+                        <label for="street" class="block text-gray-700">Street</label>
+                        <input type="text" id="street" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                    <div class="mb-4">
+                        <label for="house" class="block text-gray-700">House</label>
+                        <input type="text" id="house" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                    <div class="mb-4">
+                        <label for="apartment" class="block text-gray-700">Apartment</label>
+                        <input type="text" id="apartment" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                    <h3 class="text-xl font-bold text-purple-900 mb-4">Payment</h3>
+                    <div class="mb-4">
+                        <input type="radio" id="creditCard" name="paymentMethod" class="mr-2">
+                        <label for="creditCard" class="text-gray-700">PIX</label>
+                    </div>
+                    <div class="mb-4">
+                        <input type="radio" id="applePay" name="paymentMethod" class="mr-2">
+                        <label for="applePay" class="text-gray-700">Apple Pay</label>
+                    </div>
+                    <div class="mb-4">
+                        <input type="radio" id="googlePay" name="paymentMethod" class="mr-2">
+                        <label for="googlePay" class="text-gray-700">Google Pay</label>
+                    </div>
+                </form>
+            </div>
+            <!-- SACOLÃO-->
+            <div class="w-1/2 pl-8 bg-violet-900 p-6 rounded-lg">
+                <h2 class="text-3xl font-bold text-gray-50 mb-6">SACOLÃO (Número de compras)</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between bg-white p-4 rounded-lg">
+                        <div>
+                            <img src="assets/item1.png" alt="Item 1" class="w-16 h-16">
+                        </div>
+                        <div class="flex-1 ml-4">
+                            <h3 class="text-lg font-bold text-gray-800">Item Name 1</h3>
+                            <p class="text-gray-600">Tipo: | Gênero: </p>
+                            <p class="text-gray-600">$VALOR</p>
+                        </div>
+                        <div>
+                            <button class="text-red-500">Delete</button>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between bg-white p-4 rounded-lg">
+                        <div>
+                            <img src="assets/item2.png" alt="Item 2" class="w-16 h-16">
+                        </div>
+                        <div class="flex-1 ml-4">
+                            <h3 class="text-lg font-bold text-gray-800">Item Name 2</h3>
+                            <p class="text-gray-600">Tipo: | Gênero:</p>
+                            <p class="text-gray-600">$VALOR</p>
+                        </div>
+                        <div>
+                            <button class="text-red-500">Delete</button>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between bg-white p-4 rounded-lg">
+                        <div>
+                            <img src="assets/item3.png" alt="Item 3" class="w-16 h-16">
+                        </div>
+                        <div class="flex-1 ml-4">
+                            <h3 class="text-lg font-bold text-gray-800">Item Name 3</h3>
+                            <p class="text-gray-600">Tipo: | Gênero:</p>
+                            <p class="text-gray-600">$VALOR</p>
+                        </div>
+                        <div>
+                            <button class="text-red-500">Delete</button>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between bg-white p-4 rounded-lg">
+                        <div>
+                            <img src="assets/item4.png" alt="Item 4" class="w-16 h-16">
+                        </div>
+                        <div class="flex-1 ml-4">
+                            <h3 class="text-lg font-bold text-gray-800">Item Name 4</h3>
+                            <p class="text-gray-600">Tipo: | Gênero:</p>
+                            <p class="text-gray-600">$VALOR</p>
+                        </div>
+                        <div>
+                            <button class="text-red-500">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <h3 class="text-lg font-bold text-gray-50 mb-2">Promocode</h3>
+                    <div class="flex items-center">
+                        <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg" placeholder="Enter promocode">
+                        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg ml-2">Apply</button>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <div class="flex justify-between text-gray-50">
+                        <span>ENTREGA</span>
+                        <span>FREE</span>
+                    </div>
+
+                    <div class="flex justify-between font-bold text-gray-50 mt-2">
+                        <span>TOTAL</span>
+                        <span>$VALOR TOTAL</span>
+                    </div>
+
+                    <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg mt-6">Pay and Make an Order</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

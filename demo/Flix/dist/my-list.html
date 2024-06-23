@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Lista</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="./output.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-900 text-white">
+
+    <nav class="p-6 bg-opacity-90 bg-gradient-to-b from-purple-900 to-transparent text-white">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="flex items-center">
+                <div class="text-2xl font-bold mr-10">F</div>
+                <ul class="flex space-x-6 text-lg">
+                    <li><a href="index.html" class="hover:underline">Início</a></li>
+                    <li><a href="my-list.html" class="hover:underline">Minha lista</a></li>
+                    <li><a href="#" class="hover:underline">Mais informações</a></li>
+                </ul>
+            </div>
+            <div>
+                <button id="cart-button">
+                    <img src="assets/shopping-cart.png" alt="Shopping Cart" class="w-8 h-8">
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-6">
+        <div class="flex items-center justify-between mb-6">
+            <div class="w-full max-w-lg relative">
+                <input type="text" placeholder="Search title, genre, or actor of films"
+                    class="w-full p-4 pl-10 bg-gray-800 text-white rounded-full outline-none placeholder-gray-400">
+                <button
+                    class="absolute right-0 top-0 mt-3 mr-4 bg-purple-600 text-white px-4 py-2 rounded-full hover:bg-pink-600 focus:outline-none">Search</button>
+            </div>
+        </div>
+        <div class="mb-6">
+            <h2 class="text-2xl font-bold mb-4">Last viewed</h2>
+            <div class="flex gap-6">
+                <div class="bg-gray-800 rounded-lg overflow-hidden w-40">
+                    <img src="https://via.placeholder.com/150x225" alt="Movie Poster" class="w-full h-auto">
+                    <div class="p-4 text-center">
+                        <h3 class="text-lg font-semibold">Nome do filme</h3>
+                        <p class="text-purple-400">Ano</p>
+                        <div class="flex items-center justify-center mt-2">
+                            <span class="text-purple-400">★ Avaliação</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-800 rounded-lg overflow-hidden w-40">
+                    <img src="https://via.placeholder.com/150x225" alt="Movie Poster" class="w-full h-auto">
+                    <div class="p-4 text-center">
+                        <h3 class="text-lg font-semibold">Nome do filme</h3>
+                        <p class="text-purple-400">Ano</p>
+                        <div class="flex items-center justify-center mt-2">
+                            <span class="text-purple-400">★ Avaliação</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-800 rounded-lg overflow-hidden w-40">
+                    <img src="https://via.placeholder.com/150x225" alt="Movie Poster" class="w-full h-auto">
+                    <div class="p-4 text-center">
+                        <h3 class="text-lg font-semibold">Nome do filme</h3>
+                        <p class="text-purple-400">Ano</p>
+                        <div class="flex items-center justify-center mt-2">
+                            <span class="text-purple-400">★ Avaliação</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
