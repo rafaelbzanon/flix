@@ -2,6 +2,7 @@ package com.exemplo.demo.controller;
 
 import com.exemplo.demo.dto.MediaDTO;
 import com.exemplo.demo.service.MediaService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,14 +13,10 @@ import java.util.List;
 @RestController
 @CrossOrigin("*")
 @RequestMapping(path = "api/v1/media")
+@AllArgsConstructor
 @Slf4j
 public class MediaController {
     private final MediaService mediaService;
-
-    @Autowired
-    public MediaController(MediaService mediaService) {
-        this.mediaService = mediaService;
-    }
 
     @GetMapping
     public ResponseEntity<List<MediaDTO>> findAll() {

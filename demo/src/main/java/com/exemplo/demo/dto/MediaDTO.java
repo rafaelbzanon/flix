@@ -4,9 +4,6 @@ import com.exemplo.demo.entity.Media;
 import com.exemplo.demo.entity.MediaType;
 import lombok.Data;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Data
 public class MediaDTO {
     private Integer id;
@@ -19,9 +16,9 @@ public class MediaDTO {
     private String trailerUrl;
     private String thumbUrl;
     private Integer episodes;
+    private String casting;
     private MediaType mediaType;
     private GenreDTO genre;
-    private List<CastingDTO> casting;
 
     public static MediaDTO fromEntity(Media media) {
         MediaDTO dto = new MediaDTO();
@@ -35,19 +32,12 @@ public class MediaDTO {
         dto.setThumbUrl(media.getThumbUrl());
         dto.setTrailerUrl(media.getTrailerUrl());
         dto.setEpisodes(media.getEpisodes());
+        dto.setCasting(media.getCasting());
         dto.setMediaType(media.getMediaType());
 
         // Converte o Genres para GenresDTO
         if (media.getGenre() != null) {
             dto.setGenre(GenreDTO.fromEntity(media.getGenre()));
-        }
-
-        // Converte a lista de Casting para List<CastingDTO>
-        if (media.getCasting() != null) {
-            List<CastingDTO> castingDTOs = media.getCasting().stream()
-                    .map(CastingDTO::fromEntity)
-                    .collect(Collectors.toList());
-            dto.setCasting(castingDTOs);
         }
 
         return dto;

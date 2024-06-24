@@ -12,7 +12,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -32,7 +31,7 @@ public class MediaService {
         return ResponseEntity.ok(
                 mediaList.stream()
                 .map(MediaDTO::fromEntity)
-                .collect(Collectors.toList())
+                .toList()
         );
     }
 
@@ -45,13 +44,12 @@ public class MediaService {
         log.info("createMedia() - request: {}", mediaDTO);
 
         // Erro 400 caso o título esteja vazio.
-        if (mediaDTO.getTitle() == null) {
+        if (mediaDTO.getTitle() == null || mediaDTO.getTitle().isBlank()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O campo 'title' precisa ser informado.");
         }
 
         // Busca media pelo título no repository
         Optional<Media> optional = mediaRepository.findByTitle(mediaDTO.getTitle());
-
         // Usa o objeto Media, caso não existir cria um novo objeto.
         Media media = optional.orElseGet(Media::new);
 
@@ -66,16 +64,16 @@ public class MediaService {
         media.setTrailerUrl(mediaDTO.getTrailerUrl());
         media.setEpisodes(mediaDTO.getEpisodes());
         media.setMediaType(mediaDTO.getMediaType());
+        media.setCasting(mediaDTO.getCasting());
 
         // Relacionamentos
         media.setGenre(genreService.createOrSave(mediaDTO.getGenre()));
-        // TODO: casting
 
         // Salva no banco de dados.
         mediaRepository.save(media);
         MediaDTO mediaResponse = MediaDTO.fromEntity(media);
 
-        log.info("createMedia() - success");
+        log.info("createMedia() - success. {}", mediaResponse);
         return ResponseEntity.ok(mediaResponse); // Caso atualizar com sucesso, retorna 200.
     }
 

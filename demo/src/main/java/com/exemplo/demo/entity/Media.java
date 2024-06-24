@@ -2,16 +2,19 @@ package com.exemplo.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
 @Entity
 @Data
+@EqualsAndHashCode(of = {"title"})
 public class Media {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false, unique = true)
     private String title;
 
     private String description;
@@ -36,15 +39,10 @@ public class Media {
     private MediaType mediaType;
 
     @ManyToOne
-    @JoinColumn(name = "genre_id", nullable = true)
+    @JoinColumn(name = "genre_id")
     private Genres genre;
 
-    @ManyToMany
-    @JoinTable(
-            name = "media_casting",
-            joinColumns = @JoinColumn(name = "media_id"),
-            inverseJoinColumns = @JoinColumn(name = "casting_id",
-            nullable = true)
-    )
-    private List<Casting> casting;
+    @Column(length = 512)
+    private String casting;
+
 }
