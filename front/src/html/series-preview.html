@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview selecionado</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="./output.css" rel="stylesheet">
+    <style>
+          body, html {
+            height: 100%;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+            z-index: 1;
+        }
+        .mute-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .movie-details {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #fff;
+            position: relative;
+            z-index: 2;
+        }
+        .movie-title {
+            font-size: 3em;
+            font-weight: bold;
+        }
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        .button-buy {
+            background-color: #6D28D9; /* Purple color */
+            color: #fff;
+        }
+        .button-other {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+        .movie-meta {
+            margin-top: 20px;
+            font-size: 1em;
+            color: #aaa;
+        }
+        .movie-description {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
+</head>
+<body>
+    <nav class="p-6 bg-opacity-90 bg-gradient-to-b from-purple-900 to-transparent text-white">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="flex items-center">
+                <div class="text-2xl font-bold mr-10">F</div>
+                <ul class="flex space-x-6 text-lg">
+                    <li><a href="index.html" class="hover:underline">Início</a></li>
+                    <li><a href="#" class="hover:underline">Séries</a></li>
+                    <li><a href="#" class="hover:underline">Filmes</a></li>
+                    <li><a href="#" class="hover:underline">Minha lista</a></li>
+                    <li><a href="#" class="hover:underline">Mais informações</a></li>
+                </ul>
+            </div>
+            <div>
+                <a href="#">
+                    <img src="assets/shopping-cart.png" alt="Shopping Cart" class="w-8 h-8">
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+    
+    <div class="background-image"></div>
+    <div class="video-background">
+        <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="ompoD7V42DM"></div>
+        <div class="overlay"></div>
+    </div>
+
+    <div class="background-image"></div>
+    <div class="movie-details">
+        <div class="movie-title">Titulo</div>
+
+        <div class="video-background">
+            <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="ompoD7V42DM"></div>
+        </div>
+
+        <div class="button-container">
+            <button class="button button-buy">Add to Cart</button>
+            <button class="button button-other">+</button>
+        </div>
+        <div class="movie-meta">
+            <span>2024</span> • <span>24 episódios</span> • <span>HD</span>
+        </div>
+        <div class="movie-meta">
+            <span class="bg-red-700 px-2 py-1 rounded">RECOMENDAÇÃO DE IDADE</span>
+        </div>
+        <div class="movie-description">
+            DescriçãoDescriçãoDescriçãoDescriçãoDescrição
+        </div>
+        <div class="movie-meta mt-4">
+            <div><strong>Elenco:</strong> Person 1, Person 2, Person 3.</div>
+            <div><strong>Gêneros:</strong> Genre 1, Genre 2, Genre 3.</div>
+        </div>
+    </div>
+
+    <script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
+    <script>
+        const player = new Plyr('#player', {
+            autoplay: true,
+            loop: { active: true },
+            muted: true,
+            controls: []
+        });
+
+        function toggleMute() {
+            if (player.muted) {
+                player.muted = false;
+                document.querySelector('.mute-button').innerText = 'Mute';
+            } else {
+                player.muted = true;
+                document.querySelector('.mute-button').innerText = 'Unmute';
+            }
+        }
+
+        function changeVideo(videoId) {
+            player.source = {
+                type: 'video',
+                sources: [{
+                    src: videoId,
+                    provider: 'youtube'
+                }]
+            };
+            player.play();
+        }
+        
+    </script>
+
+</body>
+</html>

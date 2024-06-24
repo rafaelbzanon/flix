@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quero me matar</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="./output.css" rel="stylesheet">
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        overflow-x: hidden;  
+    }
+    .video-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+    }
+    .mute-button {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        z-index: 10;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+<!-- Plyr CSS -->
+<link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
+</head>
+<body class="text-white">
+
+<!-- Video no background com Plyr-->
+<div class="video-background bg-violet-900">
+    <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="ompoD7V42DM"></div>
+</div>
+
+<!-- Boto de mute -->
+<div class="mute-button" onclick="toggleMute()">Mute</div>
+
+<!-- Barra de navegação -->
+<nav class="p-6 bg-opacity-90 bg-gradient-to-b from-purple-900 to-transparent text-white">
+    <div class="container mx-auto flex items-center justify-between">
+        <div class="flex items-center">
+            <div class="text-2xl font-bold mr-10">F</div>
+            <ul class="flex space-x-6 text-lg">
+                <li><a href="index.html" class="hover:underline">Início</a></li>
+                <li><a href="my-list.html" class="hover:underline">Minha lista</a></li>
+                <li><a href="#" class="hover:underline">Mais informações</a></li>
+            </ul>
+        </div>
+        <div>
+            <button id="cart-button">
+                <img src="assets/shopping-cart.png" alt="Shopping Cart" class="w-8 h-8">
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Titulo do filme e descrição -->
+<section class="relative h-screen flex items-center text-left">
+    <div class="absolute inset-0"></div>
+    <div class="relative z-10 p-8 ml-12">
+        <h1 class="text-6xl font-bold">Comic Sans é do Caralho</h1>
+        <p class="mt-4 text-2xl">Uma das melhores fontes já inventada enfrenta seu maior inimigo o PT-RQ</p>
+    </div>
+</section>
+
+
+
+<!-- Produtos -->
+<section class="bg-opacity-90 py-12 bg-gradient-to-t from-purple-900 to-transparent">
+    <div class="container mx-auto grid grid-cols-5 gap-8 px-2">
+        <div class="product-container bg-black p-1 rounded-lg" onmouseover="changeVideo('ompoD7V42DM')">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6VGTdSO-jtTFXg6w3CD6Vqr2PO09qR_mqIw&shttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQH8vnX9rj4PBLIYzWuXtF7MDzq8Ifcd62pkw&s" alt="VHS Tape 1" class="w-full">
+            <div style="background: url('assets/eradogelo.png') no-repeat center center;"></div>
+        </div>
+        <div class="product-container bg-black p-1 rounded-lg" onmouseover="changeVideo('xy8aJw1vYHo')">
+            <img src="assets\joker.jpg" alt="VHS Tape 2" class="w-full">
+            <div  style="background: url('assets/eradogelo.png') no-repeat center center;"></div>
+        </div>
+        <div class="product-container bg-black p-1 rounded-lg" onmouseover="changeVideo('4ej5yjOqBMI')">
+            <img src="https://i.ebayimg.com/images/g/3uwAAOSwF4Fi4vSm/s-l1600.jpg" alt="VHS Tape 3" class="w-full">
+            <div style="background: url('assets/eradogelo.png') no-repeat center center;"></div>
+        </div>
+        <div class="product-container bg-black p-1 rounded-lg" onmouseover="changeVideo('qFow8LkHtlU')">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMik30uWIubsz0-Vcx6iwY48Mt4DI79FVfIA&s" alt="VHS Tape 4" class="w-full">
+            <div  style="background: url('assets/eradogelo.png') no-repeat center center;"></div>
+        </div>
+        <div class="product-container bg-black p-1 rounded-lg" onmouseover="changeVideo('By_T39ENlkg')">
+            <img src="https://m.media-amazon.com/images/I/612BxTwsQxL._AC_UF894,1000_QL80_.jpg" alt="VHS Tape 5" class="w-full">
+            <div style="background: url('assets/eradogelo.png') no-repeat center center;"></div>
+        </div>
+    </div>
+</section>
+
+<footer class="p-6 bg-opacity-100 bg-purple-900">
+    <div class="container mx-auto text-center">
+        <p>&copy; 2024 ViruFlix.</p>
+    </div>
+</footer>
+
+<!-- Plyr JS -->
+<script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
+<script>
+
+    const player = new Plyr('#player', {
+        autoplay: true,
+        loop: { active: true },
+        muted: true,
+        controls: []
+    });
+
+    function toggleMute() {
+        if (player.muted) {
+            player.muted = false;
+            document.querySelector('.mute-button').innerText = 'Mute';
+        } else {
+            player.muted = true;
+            document.querySelector('.mute-button').innerText = 'Unmute';
+        }
+    }
+
+    function changeVideo(videoId) {
+        player.source = {
+            type: 'video',
+            sources: [{
+                src: videoId,
+                provider: 'youtube'
+            }]
+        };
+        player.play();
+    }
+</script>
+</body>
+</html>
