@@ -1,46 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quero me matar</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="./output.css" rel="stylesheet">
-<style>
-    body, html {
-        height: 100%;
-        margin: 0;
-        overflow-x: hidden;  
-    }
-    .video-background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        z-index: -1;
-    }
-    .mute-button {
-        position: absolute;
-        bottom: 20px;
-        right: 20px;
-        z-index: 10;
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
-        padding: 10px 15px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-</style>
-<!-- Plyr CSS -->
-<link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quero me matar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="./output.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .mute-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+    <!-- Plyr CSS -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
 </head>
 <body class="text-white">
 
 <!-- Video no background com Plyr-->
 <div class="video-background bg-violet-900">
-    <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="ompoD7V42DM"></div>
+    <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="dEbe0rS4Z2A"></div>
 </div>
 
 <!-- Boto de mute -->
@@ -69,36 +69,15 @@
 <section class="relative h-screen flex items-center text-left">
     <div class="absolute inset-0"></div>
     <div class="relative z-10 p-8 ml-12">
-        <h1 class="text-6xl font-bold">Comic Sans é do Caralho</h1>
-        <p class="mt-4 text-2xl">Uma das melhores fontes já inventada enfrenta seu maior inimigo o PT-RQ</p>
+        <h1 id="media-title" class="text-6xl font-bold">Comic Sans é do Caralho</h1>
+        <p id="media-description" class="mt-4 text-2xl">Uma das melhores fontes já inventada enfrenta seu maior inimigo o PT-RQ</p>
     </div>
 </section>
 
-
-
 <!-- Produtos -->
 <section class="bg-opacity-90 py-12 bg-gradient-to-t from-purple-900 to-transparent">
-    <div class="container mx-auto grid grid-cols-5 gap-8 px-2">
-        <div class="product-container bg-black p-1 rounded-lg" onmouseover="changeVideo('ompoD7V42DM')">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6VGTdSO-jtTFXg6w3CD6Vqr2PO09qR_mqIw&shttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQH8vnX9rj4PBLIYzWuXtF7MDzq8Ifcd62pkw&s" alt="VHS Tape 1" class="w-full">
-            <div style="background: url('assets/eradogelo.png') no-repeat center center;"></div>
-        </div>
-        <div class="product-container bg-black p-1 rounded-lg" onmouseover="changeVideo('xy8aJw1vYHo')">
-            <img src="assets\joker.jpg" alt="VHS Tape 2" class="w-full">
-            <div  style="background: url('assets/eradogelo.png') no-repeat center center;"></div>
-        </div>
-        <div class="product-container bg-black p-1 rounded-lg" onmouseover="changeVideo('4ej5yjOqBMI')">
-            <img src="https://i.ebayimg.com/images/g/3uwAAOSwF4Fi4vSm/s-l1600.jpg" alt="VHS Tape 3" class="w-full">
-            <div style="background: url('assets/eradogelo.png') no-repeat center center;"></div>
-        </div>
-        <div class="product-container bg-black p-1 rounded-lg" onmouseover="changeVideo('qFow8LkHtlU')">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMik30uWIubsz0-Vcx6iwY48Mt4DI79FVfIA&s" alt="VHS Tape 4" class="w-full">
-            <div  style="background: url('assets/eradogelo.png') no-repeat center center;"></div>
-        </div>
-        <div class="product-container bg-black p-1 rounded-lg" onmouseover="changeVideo('By_T39ENlkg')">
-            <img src="https://m.media-amazon.com/images/I/612BxTwsQxL._AC_UF894,1000_QL80_.jpg" alt="VHS Tape 5" class="w-full">
-            <div style="background: url('assets/eradogelo.png') no-repeat center center;"></div>
-        </div>
+    <div class="container mx-auto grid grid-cols-5 gap-8 px-2" id="product-list">
+        <!-- Produtos serão inseridos aqui -->
     </div>
 </section>
 
@@ -111,13 +90,27 @@
 <!-- Plyr JS -->
 <script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
 <script>
-
     const player = new Plyr('#player', {
         autoplay: true,
         loop: { active: true },
         muted: true,
         controls: []
     });
+
+    function changeVideo(videoId, title, description) {
+        const url = `https://www.youtube.com/watch?v=${videoId}`;
+        console.log(url);
+        player.source = {
+            type: 'video',
+            sources: [{
+                src: url,
+                provider: 'youtube'
+            }]
+        };
+        player.play();
+        document.getElementById('media-title').innerText = title;
+        document.getElementById('media-description').innerText = description;
+    }
 
     function toggleMute() {
         if (player.muted) {
@@ -129,16 +122,41 @@
         }
     }
 
-    function changeVideo(videoId) {
-        player.source = {
-            type: 'video',
-            sources: [{
-                src: videoId,
-                provider: 'youtube'
-            }]
-        };
-        player.play();
+    async function fetchMedia() {
+        try {
+            const response = await fetch('http://localhost:8082/api/v1/media'); // Substitua 'URL_DA_API' pelo endereço da sua API.
+            if (!response.ok) {
+                throw new Error('Erro ao buscar dados da API');
+            }
+            const data = await response.json();
+            renderProducts(data);
+        } catch (error) {
+            console.error('Erro:', error);
+        }
     }
+
+    function renderProducts(mediaList) {
+        console.log(mediaList);
+        const productList = document.getElementById('product-list');
+        productList.innerHTML = ''; // Limpa os produtos existentes
+
+        mediaList.forEach(media => {
+            const productContainer = document.createElement('div');
+            productContainer.className = 'product-container bg-black p-1 rounded-lg';
+            productContainer.onmouseover = () => changeVideo(media.trailerUrl, media.title, media.description);
+
+            const productImage = document.createElement('img');
+            productImage.src = media.thumbUrl || 'URL_DA_IMAGEM_PADRAO'; // Substitua 'URL_DA_IMAGEM_PADRAO' por uma imagem padrão caso thumbUrl seja nulo
+            productImage.alt = media.title;
+            productImage.className = 'w-full';
+
+            productContainer.appendChild(productImage);
+
+            productList.appendChild(productContainer);
+        });
+    }
+
+    window.onload = fetchMedia;
 </script>
 </body>
 </html>
