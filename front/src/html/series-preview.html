@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="./output.css" rel="stylesheet">
     <style>
-          body, html {
+        body, html {
             height: 100%;
             margin: 0;
             overflow-x: hidden;
@@ -82,95 +82,109 @@
             margin-top: 20px;
             font-size: 1.2em;
         }
+        iframe{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
     <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
 </head>
 <body>
-    <nav class="p-6 bg-opacity-90 bg-gradient-to-b from-purple-900 to-transparent text-white">
-        <div class="container mx-auto flex items-center justify-between">
-            <div class="flex items-center">
-                <div class="text-2xl font-bold mr-10">F</div>
-                <ul class="flex space-x-6 text-lg">
-                    <li><a href="index.html" class="hover:underline">Início</a></li>
-                    <li><a href="#" class="hover:underline">Séries</a></li>
-                    <li><a href="#" class="hover:underline">Filmes</a></li>
-                    <li><a href="#" class="hover:underline">Minha lista</a></li>
-                    <li><a href="#" class="hover:underline">Mais informações</a></li>
-                </ul>
-            </div>
-            <div>
-                <a href="#">
-                    <img src="assets/shopping-cart.png" alt="Shopping Cart" class="w-8 h-8">
-                </a>
-            </div>
-        </div>
-    </nav>
-    
-    
-    <div class="background-image"></div>
-    <div class="video-background">
-        <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="ompoD7V42DM"></div>
-        <div class="overlay"></div>
+<nav class="p-6 bg-opacity-90 bg-gradient-to-b from-purple-900 to-transparent text-white"">
+<div class="container mx-auto flex items-center justify-between">
+    <div class="flex items-center">
+        <div class="text-2xl font-bold mr-10">F</div>
+        <ul class="flex space-x-6 text-lg">
+            <li><a href="index.html" class="hover:underline">Início</a></li>
+            <li><a href="my-list.html" class="hover:underline">Minha lista</a></li>
+            <li><a href="#" class="hover:underline">Mais informações</a></li>
+        </ul>
     </div>
-
-    <div class="background-image"></div>
-    <div class="movie-details">
-        <div class="movie-title">Titulo</div>
-
-        <div class="video-background">
-            <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="ompoD7V42DM"></div>
-        </div>
-
-        <div class="button-container">
-            <button class="button button-buy">Add to Cart</button>
-            <button class="button button-other">+</button>
-        </div>
-        <div class="movie-meta">
-            <span>2024</span> • <span>24 episódios</span> • <span>HD</span>
-        </div>
-        <div class="movie-meta">
-            <span class="bg-red-700 px-2 py-1 rounded">RECOMENDAÇÃO DE IDADE</span>
-        </div>
-        <div class="movie-description">
-            DescriçãoDescriçãoDescriçãoDescriçãoDescrição
-        </div>
-        <div class="movie-meta mt-4">
-            <div><strong>Elenco:</strong> Person 1, Person 2, Person 3.</div>
-            <div><strong>Gêneros:</strong> Genre 1, Genre 2, Genre 3.</div>
-        </div>
+    <div>
+        <button id="cart-button">
+            <img src="https://cdn-icons-png.flaticon.com/512/1413/1413908.png" alt="Shopping Cart" class="w-8 h-8">
+        </button>
     </div>
+</div>
+</nav>
 
-    <script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
-    <script>
-        const player = new Plyr('#player', {
-            autoplay: true,
-            loop: { active: true },
-            muted: true,
-            controls: []
-        });
+<div class="video-background">
+    <iframe id="player" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+<div class="overlay"></div>
+<div class="movie-details">
+    <div class="movie-title" id="movie-title">Carregando...</div>
+    <div class="button-container">
+        <button class="button button-buy" id="buy-button">Comprar</button>
+        <button class="button button-other">Adicionar à Minha Lista</button>
+    </div>
+    <div class="movie-meta" id="movie-meta"></div>
+    <div class="movie-description" id="movie-description">Carregando...</div>
+</div>
+<div class="mute-button" onclick="toggleMute()">Mute</div>
 
-        function toggleMute() {
-            if (player.muted) {
-                player.muted = false;
-                document.querySelector('.mute-button').innerText = 'Mute';
-            } else {
-                player.muted = true;
-                document.querySelector('.mute-button').innerText = 'Unmute';
+<script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
+<script>
+    const playerElement = document.getElementById('player');
+    const player = new Plyr(playerElement, {
+        autoplay: true,
+        loop: { active: true },
+        muted: true,
+        controls: []
+    });
+
+    function toggleMute() {
+        if (player.muted) {
+            player.muted = false;
+            document.querySelector('.mute-button').innerText = 'Mute';
+        } else {
+            player.muted = true;
+            document.querySelector('.mute-button').innerText = 'Unmute';
+        }
+    }
+
+    async function fetchMediaDetails(mediaId) {
+        try {
+            const response = await fetch(`http://localhost:8082/api/v1/media/${mediaId}`);
+            if (!response.ok) {
+                throw new Error('Erro ao buscar dados da API');
             }
+            const media = await response.json();
+            displayMediaDetails(media);
+        } catch (error) {
+            console.error('Erro:', error);
         }
+    }
 
-        function changeVideo(videoId) {
-            player.source = {
-                type: 'video',
-                sources: [{
-                    src: videoId,
-                    provider: 'youtube'
-                }]
-            };
+    function displayMediaDetails(media) {
+        document.getElementById('movie-title').innerText = media.title;
+        document.getElementById('movie-meta').innerText = `Ano: ${media.year} | Recomendção de idade: ${media.content_rating}`;
+        document.getElementById('movie-description').innerText = media.description;
+
+        if (media.trailerUrl) {
+            const url = `https://www.youtube.com/embed/${media.trailerUrl}?autoplay=1&loop=1&playlist=${media.trailerUrl}&mute=1`;
+            playerElement.src = url;
             player.play();
+        } else {
+            console.error('Trailer URL não encontrada');
         }
-        
-    </script>
 
+        document.getElementById('buy-button').addEventListener('click', () => {
+            window.location.href = media.buyLink;
+        });
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const mediaId = urlParams.get('id');
+
+    if (mediaId) {
+        fetchMediaDetails(mediaId);
+    } else {
+        console.error('ID da mídia não encontrado na URL');
+    }
+</script>
 </body>
 </html>

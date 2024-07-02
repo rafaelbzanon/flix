@@ -40,7 +40,7 @@
 
 <!-- Video no background com Plyr-->
 <div class="video-background bg-violet-900">
-    <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="dEbe0rS4Z2A"></div>
+    <iframe id="player" data-plyr-provider="youtube" data-plyr-embed-id="dEbe0rS4Z2A"></iframe>
 </div>
 
 <!-- Boto de mute -->
@@ -53,13 +53,13 @@
             <div class="text-2xl font-bold mr-10">F</div>
             <ul class="flex space-x-6 text-lg">
                 <li><a href="index.html" class="hover:underline">Início</a></li>
-                <li><a href="my-list.html" class="hover:underline">Minha lista</a></li>
+                <li><a href="html/my-list.html" class="hover:underline">Minha lista</a></li>
                 <li><a href="#" class="hover:underline">Mais informações</a></li>
             </ul>
         </div>
         <div>
             <button id="cart-button">
-                <img src="assets/shopping-cart.png" alt="Shopping Cart" class="w-8 h-8">
+                <img src="https://cdn-icons-png.flaticon.com/512/1413/1413908.png" alt="Shopping Cart" class="w-8 h-8">
             </button>
         </div>
     </div>
@@ -136,25 +136,28 @@
     }
 
     function renderProducts(mediaList) {
-        console.log(mediaList);
         const productList = document.getElementById('product-list');
-        productList.innerHTML = ''; // Limpa os produtos existentes
+        productList.innerHTML = ''; // Clear existing products
 
         mediaList.forEach(media => {
             const productContainer = document.createElement('div');
             productContainer.className = 'product-container bg-black p-1 rounded-lg';
             productContainer.onmouseover = () => changeVideo(media.trailerUrl, media.title, media.description);
 
+            const productLink = document.createElement('a');
+            productLink.href = `html/series-preview.html?id=${media.id}`;
+
             const productImage = document.createElement('img');
-            productImage.src = media.thumbUrl || 'URL_DA_IMAGEM_PADRAO'; // Substitua 'URL_DA_IMAGEM_PADRAO' por uma imagem padrão caso thumbUrl seja nulo
+            productImage.src = media.thumbUrl || 'URL_DA_IMAGEM_PADRAO'; // Replace 'URL_DA_IMAGEM_PADRAO' with a default image URL
             productImage.alt = media.title;
             productImage.className = 'w-full';
 
-            productContainer.appendChild(productImage);
-
+            productLink.appendChild(productImage);
+            productContainer.appendChild(productLink);
             productList.appendChild(productContainer);
         });
     }
+
 
     window.onload = fetchMedia;
 </script>

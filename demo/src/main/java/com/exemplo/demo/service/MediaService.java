@@ -76,5 +76,8 @@ public class MediaService {
         log.info("createMedia() - success. {}", mediaResponse);
         return ResponseEntity.ok(mediaResponse); // Caso atualizar com sucesso, retorna 200.
     }
+    public Optional<Media> findById(Integer id) {
+        return mediaRepository.findById(id);
+    }
 
 }
