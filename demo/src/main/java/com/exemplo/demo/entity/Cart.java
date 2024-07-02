@@ -19,7 +19,7 @@ public class Cart {
     private BigDecimal total;
 
     @OneToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "users_id", nullable = false)
     private Users user;
 
     @OneToMany
@@ -31,6 +31,4 @@ public class Cart {
 
     @LastModifiedDate
     private LocalDateTime updatedAt;
-
-
 }
