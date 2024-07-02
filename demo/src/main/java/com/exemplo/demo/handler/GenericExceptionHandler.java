@@ -1,6 +1,8 @@
 package com.exemplo.demo.handler;
 
 import com.exemplo.demo.dto.FaultResponseDTO;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.MalformedJwtException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,12 @@ public class GenericExceptionHandler extends ResponseEntityExceptionHandler {
     public final ResponseEntity<Object> handleExceptions(Exception ex, WebRequest request) {
         log.error("handleExceptions() - message <{}> - Exception : ", ex.getMessage(), ex);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new FaultResponseDTO("500", "Unexpected Error"));
+    }
+
+    @ExceptionHandler({MalformedJwtException.class, JwtException.class})
+    public final ResponseEntity<Object> handleJwtException(Exception ex, WebRequest request) {
+        log.error("handleJwtException() - message <{}> - Exception : ", ex.getMessage(), ex);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new FaultResponseDTO("400", "Formato do token inválido!"));
     }
 
     @ExceptionHandler(ResponseStatusException.class)
