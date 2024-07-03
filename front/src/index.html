@@ -40,7 +40,7 @@
 
 <!-- Video no background com Plyr-->
 <div class="video-background bg-violet-900">
-    <iframe id="player" data-plyr-provider="youtube" data-plyr-embed-id="dEbe0rS4Z2A"></iframe>
+    <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="dEbe0rS4Z2A"></div>
 </div>
 
 <!-- Boto de mute -->
@@ -90,6 +90,7 @@
 <!-- Plyr JS -->
 <script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
 <script>
+
     const player = new Plyr('#player', {
         autoplay: true,
         loop: { active: true },
@@ -121,18 +122,24 @@
             document.querySelector('.mute-button').innerText = 'Unmute';
         }
     }
+    function fetchMedia(){
+        const baseurl = "http://localhost:8082/api/v1";
+        const token = localStorage.getItem('token');
+        console.log(typeof token);
+        fetch(`${baseurl}/media`,{
+            method: 'GET',
+            headers:{
+                'Authorization': `Bearer ${token}`, // Define o token no cabeçalho de autorização
+                'Content-Type': 'application/json'
 
-    async function fetchMedia() {
-        try {
-            const response = await fetch('http://localhost:8082/api/v1/media'); // Substitua 'URL_DA_API' pelo endereço da sua API.
+            }, mode: 'no-cors',
+        }).then(response=>{
             if (!response.ok) {
-                throw new Error('Erro ao buscar dados da API');
+                console.log(response);
+                throw new Error('Network response was not ok');
             }
-            const data = await response.json();
-            renderProducts(data);
-        } catch (error) {
-            console.error('Erro:', error);
-        }
+            renderProducts(response);
+        }).catch(error => function (){console.log(error)})
     }
 
     function renderProducts(mediaList) {

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: url('assets/homepage_bg.png');
+            background-size: cover;
+        }
+    </style>
+    <link href="./output.css" rel="stylesheet">
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-900 bg-opacity-75">
+<div class="w-full max-w-sm p-8 bg-gray-800 bg-opacity-90 rounded-lg">
+    <h2 class="text-2xl font-bold text-center text-purple-500 mb-8">SIGN UP</h2>
+    <form id="signup-form" class="space-y-4">
+        <div>
+            <label for="email" class="block text-gray-300">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="E-mail" class="w-full p-2 mt-1 bg-gray-700 rounded-md text-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500">
+        </div>
+        <div>
+            <label for="password" class="block text-gray-300">Password</label>
+            <input type="password" id="password" name="password" placeholder="Password" class="w-full p-2 mt-1 bg-gray-700 rounded-md text-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500">
+        </div>
+        <button type="submit" class="w-full py-2 mt-4 bg-purple-600 text-white font-semibold rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500">Sign Up</button>
+        <div class="text-center text-purple-400 mt-4 hover:underline cursor-pointer" id="login-link">Already have an account? Log in</div>
+    </form>
+</div>
+
+<script>
+
+    const baseurl = "http://localhost:8082/api/v1";
+    document.getElementById('login-link').addEventListener('click', function() {
+        window.location.href = 'login.html';
+    });
+
+    document.getElementById('signup-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        fetch(`${baseurl}/auth/sign-up`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.statusCode === "200") {
+                    alert('Registration successful!');
+                    window.location.href = 'login.html';
+                } else {
+                    alert('Registration failed: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+</script>
+</body>
+</html>

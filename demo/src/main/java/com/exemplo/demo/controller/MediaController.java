@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin("*")
 @RequestMapping(path = "api/v1/media")
+@CrossOrigin(origins = "http://localhost:63342")
 @AllArgsConstructor
 @Slf4j
 public class MediaController {
