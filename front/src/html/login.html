@@ -7,11 +7,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            background: url('assets/homepage_bg.png');
+            background: url('');
             background-size: cover;
         }
     </style>
-    <link href="./output.css" rel="stylesheet">
+    <link href="../css/tailwind/output.css" rel="stylesheet">
 </head>
 <body class="flex items-center justify-center min-h-screen bg-gray-900 bg-opacity-75">
 <div class="w-full max-w-sm p-8 bg-gray-800 bg-opacity-90 rounded-lg">
@@ -39,7 +39,6 @@
 </div>
 
 <script>
-
     const baseurl = "http://localhost:8082/api/v1";
 
     document.getElementById('signup-link').addEventListener('click', function() {
@@ -63,13 +62,13 @@
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                console.log(response);
                 return response.json(); // Transforma a resposta em JSON
-            })  // Retorna a resposta JSON
+            })
             .then(data => {
-                localStorage.setItem('token', data.data.token);
                 if (data.statusCode === "200") {
-                   window.location.href = '../index.html';
+                    localStorage.setItem('token', data.data.token);
+                    console.log('Token stored:', data.data.token); // Verifique se o token está correto
+                    window.location.href = '../index.html';
                 } else {
                     alert('Login failed: ' + data.message);
                 }
