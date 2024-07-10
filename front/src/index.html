@@ -45,7 +45,7 @@
     <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="dEbe0rS4Z2A"></div>
 </div>
 
-<!-- Boto de mute -->
+<!-- Botao de mute -->
 <div class="mute-button" onclick="toggleMute()">Mute</div>
 
 <!-- Barra de navegação -->
@@ -129,33 +129,6 @@
         }
     }
 
-    // async function fetchMedia(){
-    //     const baseurl = "http://localhost:8082/api/v1";
-    //     const token = localStorage.getItem('token');
-    //     console.log(typeof token);
-    //     console.log(token);
-    //
-    //     try {
-    //         const response = await fetch(`${baseurl}/media`, {
-    //             method: 'GET',
-    //             headers: {
-    //                 'Authorization': `Bearer ${token}`, // Define o token no cabeçalho de autorização
-    //                 'Content-Type': 'application/json'
-    //
-    //             }
-    //         });
-    //
-    //         if (!response.ok) {
-    //             console.error('Error fetching data:', response);
-    //         }
-    //
-    //         const mediaList = await response.json();
-    //         renderProducts(mediaList);
-    //     } catch (error) {
-    //         console.error('Error fetching data:', error);
-    //     }
-    // }
-
     async function fetchMedia() {
         const baseurl = "http://localhost:8082/api/v1";
         const token = localStorage.getItem('token');
@@ -201,22 +174,28 @@
             const productLink = document.createElement('a');
             productLink.href = `html/series-preview.html?id=${media.id}`;
 
+            const productName = document.createElement('div');
+            productName.textContent = media.title;
+            productName.className = 'flex top-0 left-0 text-white bg-gray-700 bg-opacity-75 p-2';
+
             const productImage = document.createElement('img');
-            productImage.src = media.thumbUrl || 'https://www.pudim.com.br/pudim.jpg'; // Replace 'URL_DA_IMAGEM_PADRAO' with a default image URL
+            productImage.src = media.thumbUrl ||
+                'https://i.pinimg.com/originals/60/26/15/602615deaee5ef0edc93438af522f54f.png';
             productImage.alt = media.title;
             productImage.className = 'w-full';
 
             productLink.appendChild(productImage);
+            productContainer.appendChild(productName)
             productContainer.appendChild(productLink);
             productList.appendChild(productContainer);
         });
     }
 
     function verifyLogin() {
-        const token = localStorage.getItem('token')
+        const token = localStorage.getItem('token');
 
         if (token==null) {
-            window.location.href = 'html/login.html'
+            window.location.href = 'html/login.html';
         }
     }
 
