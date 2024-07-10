@@ -1,9 +1,9 @@
 package com.exemplo.demo.controller;
 
 import com.exemplo.demo.dto.AddItemRequest;
-import com.exemplo.demo.dto.CartDTO;
-import com.exemplo.demo.entity.Cart;
-import com.exemplo.demo.service.CartsServ;
+import com.exemplo.demo.dto.ListDTO;
+import com.exemplo.demo.entity.Lists;
+import com.exemplo.demo.service.ListServ;
 import com.exemplo.demo.util.SecurityUtils;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,32 +14,32 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/api/v1/cart")
-public class CartController {
+@RequestMapping("/api/v1/list")
+public class ListController {
 
-    private final CartsServ cartsServ;
+    private final ListServ listServ;
 
     @Autowired
-    public CartController(CartsServ cartsServ) {
-        this.cartsServ = cartsServ;
+    public ListController(ListServ listServ) {
+        this.listServ = listServ;
     }
 
     @PostMapping
-    public ResponseEntity<Cart> addToCart(@RequestBody @Valid AddItemRequest request) {
+    public ResponseEntity<Lists> addItem(@RequestBody @Valid AddItemRequest request) {
         try {
             String userEmail = SecurityUtils.getLoggedInUserEmail();
-            Cart cart = cartsServ.addItemToCart(userEmail, request.getMediaId());
-            return ResponseEntity.ok(cart);
+            Lists list = listServ.addItemToList(userEmail, request.getMediaId());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
     @GetMapping
-    public ResponseEntity<List<CartDTO>> listCarts() {
+    public ResponseEntity<List<ListDTO>> listLists() {
         try {
             String userEmail = SecurityUtils.getLoggedInUserEmail();
-            List<CartDTO> carts = cartsServ.getCartsForUser(userEmail);
+            List<ListDTO> carts = listServ.getListsForUser(userEmail);
             return ResponseEntity.ok(carts);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -47,10 +47,10 @@ public class CartController {
     }
 
     @DeleteMapping("/{mediaId}")
-    public ResponseEntity<Void> removeFromCart(@PathVariable Integer mediaId) {
+    public ResponseEntity<Void> removeFromList(@PathVariable Integer mediaId) {
         try {
             String userEmail = SecurityUtils.getLoggedInUserEmail();
-            cartsServ.removeItemFromCart(userEmail, mediaId);
+            listServ.removeItemFromList(userEmail, mediaId);
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
