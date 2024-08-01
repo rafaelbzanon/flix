@@ -17,6 +17,13 @@ Flix integrates with different streaming platforms to provide a centralized cata
 
 With Flix, we eliminate the need for multiple subscriptions and offer a practical, cost-effective way to access the content you really want to see. No more paying for services you don't use— with Flix, you only rent what you need, when you need it.
 
+## Examples
+
+![Login](https://github.com/rafaelbzanon/flix/blob/main/front/exemplos/exemplo2.jpg?raw=true)
+![PaginaInicial](https://github.com/rafaelbzanon/flix/blob/main/front/exemplos/exemplo4.jpg?raw=true)
+![Media](https://github.com/rafaelbzanon/flix/blob/main/front/exemplos/exemplo1.jpg?raw=true)
+![Lista](https://github.com/rafaelbzanon/flix/blob/main/front/exemplos/exemplo3.jpg?raw=true)
+
 ## Contributing
 
 If you want to contribute to Flix, feel free to submit pull requests, report issues, or suggest improvements. All contributions are welcome!
