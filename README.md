@@ -19,9 +19,13 @@ With Flix, we eliminate the need for multiple subscriptions and offer a practica
 
 ## Examples
 
+<h2>Login</h2>
 ![Login](https://github.com/rafaelbzanon/flix/blob/main/front/exemplos/exemplo2.jpg?raw=true)
+<h2>Homepage</h2>
 ![PaginaInicial](https://github.com/rafaelbzanon/flix/blob/main/front/exemplos/exemplo4.jpg?raw=true)
+<h2>Media details</h2>
 ![Media](https://github.com/rafaelbzanon/flix/blob/main/front/exemplos/exemplo1.jpg?raw=true)
+<h2>List</h2>
 ![Lista](https://github.com/rafaelbzanon/flix/blob/main/front/exemplos/exemplo3.jpg?raw=true)
 
 ## Contributing
